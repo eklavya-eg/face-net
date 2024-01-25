@@ -1,0 +1,11 @@
+why 5 faces of same person - it will provide a diverse dataset make model roburst to large datasets
+
+why 72 faces of same person - model will roburst to anomalies when on a large number of faces describing same person
+
+network modtivation - inception network
+
+conda - working in facerecognition
+
+horizontal mirroring - to make data more random and increase variability, to make model roburst to mirror poses
+
+Addressing Class Imbalance: In classification tasks where certain classes may be underrepresented, data augmentation can be used to generate additional examples for the minority classes. This helps balance the class distribution and prevents the model from being biased towards the majority class.

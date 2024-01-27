@@ -28,7 +28,7 @@ class DataBuilder:
                                 label = os.listdir(os.path.join(in_path, ldir, labels[i]))
                                 random.shuffle(label)
                                 label = label[0]
-                                neg = os.path.join(in_path, ldir, labels[i], label)
+                                neg = "/".join([in_path, ldir, labels[i], label])
                             else:
                                 label = os.listdir(os.path.join(in_path, ldir, labels[i]))[0]
                                 neg = "/".join([in_path, ldir, labels[i], label])
@@ -39,4 +39,4 @@ class DataBuilder:
 if __name__ == "__main__":
     path = os.path.join(os.getcwd(), "Models", "Datasets", "FaceRecognition").split("\\")
     path = "/".join(path)
-    DataBuilder(path, 800, 1000)
+    DataBuilder(path, 1000, 1000)

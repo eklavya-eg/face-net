@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import warnings
+from tqdm import tqdm
 import torch
 from torch import nn as nn
 from torch import optim as optim
@@ -21,29 +22,30 @@ val = data[7000:72000]
 test = data[72000:77000]
 
 
-dataset = FaceDataset(data)
+train = FaceDataset(train)
+val = FaceDataset(val)
+test = FaceDataset(test)
 variables = Variables()
 train = DataLoader(train, batch_size = variables.batch_size, shuffle=False)
 val = DataLoader(val, batch_size = variables.batch_size, shuffle=False)
 test = DataLoader(test, batch_size = variables.batch_size, shuffle=False)
 
 
-model = Model(in_channels=variables.in_channels, embedding_size=variables.emembedding_size)
+model = Model(in_channels=variables.in_channels, embedding_size=variables.emembedding_size, batch_size=variables.batch_size)
 tripletloss = TripletLoss(margin=variables.margin, p=variables.p)
 optimizer = Optimizer(model=model, lr=variables.lr).optimize()
-
+model.to("cuda")
 
 for epoch in range(variables.epochs):
     model.train()
     train_cost = 0.0
-    for train_batch in train:
+    for train_batch in tqdm(train):
         anc, pos, neg = train_batch
         anc = model.forward(anc)
         pos = model.forward(pos)
         neg = model.forward(neg)
         loss = tripletloss.loss(anc, pos, neg)
         train_cost += loss
-
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()

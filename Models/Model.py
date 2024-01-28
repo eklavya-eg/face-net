@@ -5,7 +5,7 @@ from torch.nn import functional as F
 
 
 class Model(nn.Module):
-    def __init__(self, in_channels, embedding_size):
+    def __init__(self, in_channels, embedding_size, batch_size):
         super(Model, self).__init__()
         self.conv = nn.Sequential(nn.Conv2d(in_channels, in_channels, kernel_size=1, padding=0),
                                    nn.AvgPool2d(kernel_size=2, stride=2))
@@ -16,7 +16,7 @@ class Model(nn.Module):
                                 nn.Conv2d(92, 128, kernel_size=3, padding="same"))
         self.b3 = nn.Sequential(nn.Conv2d(in_channels, 24, kernel_size=1, padding="same"),
                                 nn.Conv2d(24, 32, kernel_size=5, padding="same"))
-        self.b4 = nn.Sequential(nn.MaxPool2d(kernel_size=3, padding="same", stride = 1),
+        self.b4 = nn.Sequential(nn.MaxPool2d(kernel_size=3, padding=1, stride = 1),
                                 nn.Conv2d(in_channels, 32, kernel_size=1, padding="same"))
         
 
@@ -25,7 +25,7 @@ class Model(nn.Module):
                                 nn.Conv2d(128, 64, kernel_size=3, padding="same"))
         self.b7 = nn.Sequential(nn.Conv2d(256, 24, kernel_size=1, padding="same"),
                                 nn.Conv2d(24, 16, kernel_size=5, padding="same"))
-        self.b8 = nn.Sequential(nn.MaxPool2d(kernel_size=3, padding="same", stride = 1),
+        self.b8 = nn.Sequential(nn.MaxPool2d(kernel_size=3, padding=1, stride = 1),
                                 nn.Conv2d(256, 16, kernel_size=1, padding="same"))
 
         self.b5 = nn.Conv2d(256, 32, kernel_size=1, padding="same")
@@ -33,11 +33,13 @@ class Model(nn.Module):
                                 nn.Conv2d(128, 64, kernel_size=3, padding="same"))
         self.b7 = nn.Sequential(nn.Conv2d(256, 24, kernel_size=1, padding="same"),
                                 nn.Conv2d(24, 16, kernel_size=5, padding="same"))
-        self.b8 = nn.Sequential(nn.MaxPool2d(kernel_size=3, padding="same", stride = 1),
+        self.b8 = nn.Sequential(nn.MaxPool2d(kernel_size=3, padding=1, stride = 1),
                                 nn.Conv2d(256, 16, kernel_size=1, padding="same"))
         
         self.fc = nn.Sequential(nn.Linear(401408, 512, bias=True),
                                 nn.Linear(512, embedding_size, bias=True))
+        
+        self.batch_size = batch_size
         
     def forward(self, x):
         x = self.conv(x)
@@ -54,7 +56,7 @@ class Model(nn.Module):
         xb8 = self.b8(x)
         x = torch.cat([xb5, xb6, xb7, xb8], dim = 1)
 
-        x = x.view()
+        x = x.view(self.batch_size, -1)
         x = self.fc(x)
 
         return x

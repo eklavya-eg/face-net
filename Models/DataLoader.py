@@ -14,7 +14,7 @@ class FaceDataset(Dataset):
         anchor = read_image(anchor, mode=ImageReadMode.RGB)
         positive = read_image(positive, mode=ImageReadMode.RGB)
         negative = read_image(negative, mode=ImageReadMode.RGB)
-        return anchor, positive, negative
+        return torch.as_tensor(anchor, dtype=torch.float32, device="cuda"), torch.as_tensor(positive, dtype=torch.float32, device="cuda"), torch.as_tensor(negative, dtype=torch.float32, device="cuda")
     
     def __len__(self):
         return len(self.data)

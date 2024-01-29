@@ -34,13 +34,17 @@ test = DataLoader(test, batch_size = variables.batch_size, shuffle=False)
 model = Model(in_channels=variables.in_channels, embedding_size=variables.emembedding_size, batch_size=variables.batch_size)
 tripletloss = TripletLoss(margin=variables.margin, p=variables.p)
 optimizer = Optimizer(model=model, lr=variables.lr).optimize()
-model.to("cuda")
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+cpu = "cpu"
+model.to(cpu)
 
-for epoch in range(variables.epochs):
+for epoch in range(0, variables.epochs):
     model.train()
     train_cost = 0.0
-    for train_batch in tqdm(train):
+    loop = tqdm(enumerate(train), total=len(train), leave=True)
+    for _, train_batch in loop:
         anc, pos, neg = train_batch
+        anc, pos, neg = anc.to(device), pos.to(device), neg.to(device)
         anc = model.forward(anc)
         pos = model.forward(pos)
         neg = model.forward(neg)
@@ -49,17 +53,23 @@ for epoch in range(variables.epochs):
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
+        loop.set_description(f"[{epoch+1}/{variables.epochs}]")
+        loop.set_postfix(loss=loss.item())
     avg_train_loss = train_cost/len(train)
     
     model.eval()
     with torch.no_grad():
         val_cost = 0.0
-        for val_batch in val:
+        loop_val = tqdm(enumerate(val), total=len(val), leave=True)
+        for _, val_batch in loop_val:
             anc, pos, neg = val_batch
+            anc, pos, neg = anc.to(device), pos.to(device), neg.to(device)
             anc = model.forward(anc)
             pos = model.forward(pos)
             neg = model.forward(neg)
             val_loss = tripletloss.loss(anc, pos, neg)
             val_cost += val_loss.item()
+            loop_val.set_description(f"[{epoch+1}/{variables.epochs}]")
+            loop_val.set_postfix(loss=val_loss.item())
         avg_val_loss = val_cost/len(val)
-        print(f"Epoch {epoch + 1}/{variables.epochs}, Training Loss: {avg_train_loss}, Validation Loss: {avg_val_loss}")
+        print(f"Epoch {epoch+1}/{variables.epochs}, Training Loss: {avg_train_loss}, Validation Loss: {avg_val_loss}")

@@ -9,3 +9,13 @@ conda - working in facerecognition
 horizontal mirroring - to make data more random and increase variability, to make model roburst to mirror poses
 
 Addressing Class Imbalance: In classification tasks where certain classes may be underrepresented, data augmentation can be used to generate additional examples for the minority classes. This helps balance the class distribution and prevents the model from being biased towards the majority class.
+
+
+ A common choice is to use a warm-up strategy followed by a decay strategy.
+
+
+
+ unsupervised domain adaption
+
+
+ thiano for calc

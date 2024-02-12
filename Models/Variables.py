@@ -1,5 +1,5 @@
 class Variables:
-    def __init__(self, in_channels=3, embedding_size=256, batch_size=100, lr=0.001, margin=0.2, p=3, epochs=100):
+    def __init__(self, in_channels=3, embedding_size=256, batch_size=40, batch_size_test_val = 40, lr=0.001, margin=0.3, p=2, epochs=100, step_size=3, gamma=0.1, p_dropout=0.2, p_linear_dropout=0.2):
         self.batch_size = batch_size
         self.lr = lr
         self.in_channels = in_channels
@@ -7,3 +7,8 @@ class Variables:
         self.p = p
         self.margin = margin
         self.epochs = epochs
+        self.step_size = step_size
+        self.gamma = gamma
+        self.batch_size_test_val = batch_size_test_val
+        self.p_dropout = p_dropout
+        self.p_linear_dropout = p_linear_dropout

@@ -52,6 +52,3 @@ This project is licensed under the MIT License. See the LICENSE file for details
 
 <h2 align="center">Contact</h2>
 For any questions or inquiries, feel free to reach out to me at emessage.eg@gmail.com.
-
-<p align="center">Made with ❤️ by Eklavya</p>
-```

@@ -55,14 +55,14 @@ class Model(nn.Module):
 
         self.dropout = nn.Dropout2d(p_dropout)
         
-        self.fc = nn.Sequential(nn.Linear(401408, 512, bias=True),
+        self.fc = nn.Sequential(nn.Linear(128*56*56, 512, bias=True),
                                 nn.BatchNorm1d(512),
                                 nn.LeakyReLU(0.1),
                                 nn.Dropout(p_linear_dropout),
                                 nn.Linear(512, embedding_size, bias=True))
         
         
-    def forward(self, x, batch_size):
+    def forward(self, x):
         x = self.conv(x)
 
         xb1 = self.b1(x)
@@ -78,11 +78,9 @@ class Model(nn.Module):
         xb7 = self.b7(x)
         xb8 = self.b8(x)
         x = torch.cat([xb5, xb6, xb7, xb8], dim = 1)
-
         x = self.dropout(x)
-
-        
-        x = x.view(batch_size, -1)
+        x = x.reshape(-1, 128*56*56)
+        # x = x.contiguous.view(-1, 128*56*56)
         x = self.fc(x)
 
         return x

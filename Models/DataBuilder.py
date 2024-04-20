@@ -4,10 +4,10 @@ import random
 class DataBuilder:
     def __init__(self, in_path, labels_72, labels_5):
         try:
-            os.mkdir("W:/Projects/FaceRecognition/Models/Data")
+            os.mkdir("W:/Projects/Facial-Encoding-Generator/Models/Data")
         except FileExistsError:
             pass
-        with open("W:/Projects/FaceRecognition/Models/Data/Dataset.csv", "w") as file:
+        with open("W:/Projects/Facial-Encoding-Generator/Models/Data/Dataset.csv", "w") as file:
             file.write("Anchor,Positive,Negative\n")
             for ldir in os.listdir(in_path):
                 total = 0
@@ -39,4 +39,4 @@ class DataBuilder:
 if __name__ == "__main__":
     path = os.path.join(os.getcwd(), "Models", "Datasets", "FaceRecognition").split("\\")
     path = "/".join(path)
-    DataBuilder(path, 1000, 1000)
+    DataBuilder(path, 2000, 2000)

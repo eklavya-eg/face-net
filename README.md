@@ -3,7 +3,6 @@
 <p align="center">
   <img src="https://img.shields.io/badge/Made%20with-PyTorch-EE4C2C?style=flat&logo=pytorch&logoColor=white" alt="Made with PyTorch">
   <img src="https://img.shields.io/badge/One%20Shot%20Learning-✔-blue" alt="One Shot Learning">
-  <img src="https://img.shields.io/github/license/eklavya-eg/facial-encoding-generator" alt="License">
 </p>
 
 <p align="center">

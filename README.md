@@ -1,4 +1,4 @@
-<h1 align="center">Facial Encoding Generator</h1>
+<h1 align="center">face-net</h1>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Made%20with-PyTorch-EE4C2C?style=flat&logo=pytorch&logoColor=white" alt="Made with PyTorch">

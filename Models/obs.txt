@@ -2,7 +2,7 @@ why 5 faces of same person - it will provide a diverse dataset make model roburs
 
 why 72 faces of same person - model will roburst to anomalies when on a large number of faces describing same person
 
-network modtivation - inception network
+network motivation - inception network
 
 conda - working in facerecognition
 

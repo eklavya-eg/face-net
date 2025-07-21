@@ -1,4 +1,4 @@
-<h1 align="left">face-net</h1>
+<h1 align="left">FaceNet</h1>
 
 <p align="left">
   <img src="https://img.shields.io/badge/Made%20with-PyTorch-EE4C2C?style=flat&logo=pytorch&logoColor=white" alt="Made with PyTorch">
@@ -43,11 +43,5 @@ To get started with Facial Encoding Generator, follow these steps:
 
 4. Use the provided scripts to generate facial encodings and perform face verification.
 
-<h2 align="left">Contributing</h2>
-Contributions are welcome! If you'd like to contribute to this project, please fork the repository and submit a pull request.
-
 <h2 align="left">License</h2>
 This project is licensed under the Apache License 2.0 License. See the LICENSE file for details.
-
-<h2 align="left">Contact</h2>
-For any questions or inquiries, feel free to reach out to me at emessage.eg@gmail.com.

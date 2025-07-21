@@ -1,15 +1,15 @@
-<h1 align="center">face-net</h1>
+<h1 align="left">face-net</h1>
 
-<p align="center">
+<p align="left">
   <img src="https://img.shields.io/badge/Made%20with-PyTorch-EE4C2C?style=flat&logo=pytorch&logoColor=white" alt="Made with PyTorch">
   <img src="https://img.shields.io/badge/One%20Shot%20Learning-✔-blue" alt="One Shot Learning">
 </p>
 
-<p align="center">
+<p align="left">
   Facial Encoding Generator is a project that implements one-shot learning using an Inception-Siamese network trained with PyTorch. It generates facial encodings and provides face verification functionality.
 </p>
 
-<h2 align="center">Features</h2>
+<h2 align="left">Features</h2>
 
 - **One-Shot Learning:** Utilizes an Inception-Siamese network for one-shot learning, allowing effective face recognition with minimal data.
   
@@ -19,7 +19,7 @@
   
 - **HDF5 Support:** Stores facial encodings in HDF5 (.h5) file format for efficient data storage and retrieval.
 
-<h2 align="center">Usage</h2>
+<h2 align="left">Usage</h2>
 
 1. **Training:** Train the Inception-Siamese network using your dataset.
    
@@ -27,7 +27,7 @@
    
 3. **Face Verification:** Verify the identity of a person by comparing their facial encoding against stored encodings.
 
-<h2 align="center">Getting Started</h2>
+<h2 align="left">Getting Started</h2>
 
 To get started with Facial Encoding Generator, follow these steps:
 
@@ -43,11 +43,11 @@ To get started with Facial Encoding Generator, follow these steps:
 
 4. Use the provided scripts to generate facial encodings and perform face verification.
 
-<h2 align="center">Contributing</h2>
+<h2 align="left">Contributing</h2>
 Contributions are welcome! If you'd like to contribute to this project, please fork the repository and submit a pull request.
 
-<h2 align="center">License</h2>
+<h2 align="left">License</h2>
 This project is licensed under the Apache License 2.0 License. See the LICENSE file for details.
 
-<h2 align="center">Contact</h2>
+<h2 align="left">Contact</h2>
 For any questions or inquiries, feel free to reach out to me at emessage.eg@gmail.com.

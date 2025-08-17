@@ -1,6 +1,6 @@
 <h1 align="left">FaceNet</h1>
 
-<p align="left">
+<p align="center>
   <img src="https://img.shields.io/badge/Made%20with-PyTorch-EE4C2C?style=flat&logo=pytorch&logoColor=white" alt="Made with PyTorch">
   <img src="https://img.shields.io/badge/One%20Shot%20Learning-✔-blue" alt="One Shot Learning">
 </p>

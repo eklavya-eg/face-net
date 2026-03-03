@@ -26,6 +26,7 @@ class Model(nn.Module):
             nn.LeakyReLU(0.1),
             nn.Conv2d(192, 384, kernel_size=3, padding=0),
             nn.LeakyReLU(0.1),
+            nn.Dropout2d(0.5),
             nn.Conv2d(384, 384, kernel_size=1, padding=0),
             nn.LeakyReLU(0.1),
             nn.Conv2d(384, 256, kernel_size=3, padding=0),
@@ -37,7 +38,8 @@ class Model(nn.Module):
             nn.LeakyReLU(0.1),
         )
         
-        self.fc = nn.Sequential(nn.Linear(256*7*7, 640, bias=True),
+        self.fc = nn.Sequential(nn.Dropout(0.2),
+                                nn.Linear(256*7*7, 640, bias=True),
                                 nn.BatchNorm1d(640),
                                 nn.LeakyReLU(0.1),
                                 nn.Linear(640, embedding_size, bias=True))
@@ -76,4 +78,4 @@ class Schedular:
         self.gamma = gamma
     
     def decay(self):
-        return lr_scheduler.StepLR(self.optimizer, 20, 0.1)
+        return lr_scheduler.StepLR(self.optimizer, 10, 0.1)

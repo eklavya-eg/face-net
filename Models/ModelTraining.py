@@ -19,7 +19,7 @@ if __name__ == "__main__":
     path = "Models/Data/Dataset.csv"
     data = pd.read_csv(path)
     data = data.values
-    data = data[:2000]
+    # data = data[:2000]
     # np.random.shuffle(data)
     train_len = int(data.__len__()*80/100)
     train = data[0:train_len]
@@ -113,7 +113,7 @@ if __name__ == "__main__":
                         'train_loss': train_cost,
                     }
                 avg_train_loss = train_cost/len(train)
-                
+                model_main = model.state_dict()
 
                 model.eval()
                 with torch.no_grad():
@@ -141,3 +141,7 @@ if __name__ == "__main__":
                 print("\n")
     except KeyboardInterrupt:
         torch.save(checkpoint, f'Models/Training Cache/model_cache.pth')
+        try:
+            torch.save(model_main, f'Models/Weights/model_{epoch}.pth')
+        except:
+            print("Model is not defined")
